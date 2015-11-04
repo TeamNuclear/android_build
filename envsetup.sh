@@ -734,7 +734,7 @@ function tapas()
 function eat()
 {
     if [ "$OUT" ] ; then
-        MODVERSION=$(get_build_var SLIM_VERSION)
+        MODVERSION=$(get_build_var NUCLEAR_VERSION)
         ZIPFILE=$MODVERSION.zip
         ZIPPATH=$OUT/$ZIPFILE
         if [ ! -f $ZIPPATH ] ; then

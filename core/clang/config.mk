@@ -18,6 +18,12 @@ LLVM_LINK := $(LLVM_PREBUILTS_PATH)/llvm-link$(BUILD_EXECUTABLE_SUFFIX)
 CLANG_TBLGEN := $(BUILD_OUT_EXECUTABLES)/clang-tblgen$(BUILD_EXECUTABLE_SUFFIX)
 LLVM_TBLGEN := $(BUILD_OUT_EXECUTABLES)/llvm-tblgen$(BUILD_EXECUTABLE_SUFFIX)
 
+include $(BUILD_SYSTEM)/nuclearopts.mk
+
+CLANG_CONFIG_EXTRA_CFLAGS += $(NUCLEAR_CLANG_CFLAGS)
+CLANG_CONFIG_EXTRA_CPPFLAGS += $(NUCLEAR_CLANG_CPPFLAGS)
+CLANG_CONFIG_EXTRA_LDFLAGS += $(NUCLEAR_CLANG_LDFLAGS)
+
 # Clang flags for all host or target rules
 CLANG_CONFIG_EXTRA_ASFLAGS :=
 CLANG_CONFIG_EXTRA_CFLAGS :=
@@ -77,7 +83,8 @@ CLANG_CONFIG_UNKNOWN_CFLAGS := \
   -Wno-unused-but-set-variable \
   -Wno-unused-local-typedefs \
   -Wunused-but-set-parameter \
-  -Wunused-but-set-variable
+  -Wunused-but-set-variable \
+  $(NUCLEAR_CLANG_UNKNOWN_FLAGS)
 
 # Clang flags for all host rules
 CLANG_CONFIG_HOST_EXTRA_ASFLAGS :=
