@@ -620,20 +620,20 @@ else if get_stage("%(bcb_dev)s") == "3/3" then
 
   system_progress = 0.75
 
-  script.Print("                    _____________________ ")
-  script.Print("                   /    www.slimroms.org |")
-  script.Print("                  /                      |")
-  script.Print("                 /    ___________________|")
-  script.Print("                /    /    ___             ")
-  script.Print("               /    / ___/   \            ")
-  script.Print("              /    / /   \___/____   ____ ")
-  script.Print("             /    /  |   |___/    \_/    |")
-  script.Print(" ___________/    /   |   |   |           |")
-  script.Print("|               /    |   |   |   |   |   |")
-  script.Print("|              /     |   |   |   |   |   |")
-  script.Print("|_____________/      \___^___^___^___^___/")
-  script.Print(" ")
-
+  
+  script.Print("N")
+  script.Print("Nu")
+  script.Print("Nuc")
+  script.Print("Nucl")
+  script.Print("Nucle")
+  script.Print("Nuclea")
+  script.Print("Nuclear")
+  script.Print("NuclearS")
+  script.Print("NuclearSl")
+  script.Print("NuclearSli")
+  script.Print("NuclearSlim")
+  script.Print("............NuclearTeam")
+  script.Print("............Android 6.0")
   if OPTIONS.wipe_user_data:
     system_progress -= 0.1
   if HasVendorPartition(input_zip):
@@ -721,6 +721,13 @@ else if get_stage("%(bcb_dev)s") == "3/3" then
     if block_based:
       script.Unmount("/system")
 
+  script.Print("Flashing SuperSU...")
+  common.ZipWriteStr(output_zip, "supersu/supersu.zip",
+                   ""+input_zip.read("SYSTEM/addon.d/UPDATE-SuperSU.zip"))
+  script.Mount("/system")
+  script.FlashSuperSU()
+
+
   script.ShowProgress(0.05, 5)
   script.WriteRawImage("/boot", "boot.img")
 
@@ -729,6 +736,12 @@ else if get_stage("%(bcb_dev)s") == "3/3" then
 
   if OPTIONS.extra_script is not None:
     script.AppendExtra(OPTIONS.extra_script)
+
+# SuperSU leave /system unmounted while we need it mounted here to avoid
+  # a warning from non-Multirom TWRP
+  if block_based:
+    script.Mount("/system")
+
 
   script.UnmountAll()
 

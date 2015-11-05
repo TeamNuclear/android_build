@@ -6,7 +6,7 @@ NUCLEAR_GCC_CFLAGS_ARM := -O3
 NUCLEAR_GCC_CFLAGS_THUMB := -O3
 
 # Additional flags passed to all C targets compiled with GCC
-NUCLEAR_GCC_CFLAGS := -O3 -fgcse-las -fgraphite -fgraphite-identity -fgcse-sm -fipa-pta -fivopts -fomit-frame-pointer -frename-registers -fsection-anchors -ftracer -ftree-loop-im -ftree-loop-ivcanon -funsafe-loop-optimizations -funswitch-loops -fweb -Wno-error=array-bounds -Wno-error=clobbered -Wno-error=maybe-uninitialized -Wno-error=strict-overflow
+NUCLEAR_GCC_CFLAGS := -O3 -fgcse-las -fgraphite -fgraphite-identity -ffast-math -fgcse-sm -fipa-pta -fivopts -fomit-frame-pointer -frename-registers -fsection-anchors -ftracer -ftree-loop-im -ftree-loop-ivcanon -funsafe-loop-optimizations -funswitch-loops -fweb -Wno-error=array-bounds -Wno-error=clobbered -Wno-error=maybe-uninitialized -Wno-error=strict-overflow
 
 
 # Flags passed to all C targets compiled with GCC
@@ -38,6 +38,7 @@ NUCLEAR_CLANG_UNKNOWN_FLAGS := \
   -ftracer \
   -fgraphite \
   -fgraphite-identity \
+  -ffast-math \
   -fipa-pta \
   -floop-block \
   -floop-interchange \
